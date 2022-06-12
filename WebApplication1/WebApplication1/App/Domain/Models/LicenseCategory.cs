@@ -6,4 +6,5 @@ public class LicenseCategory
     public int Type { get; set; }
     public Vehicle Vehicle { get; set; }
     public int VehicleId { get; set; }
+    
 }
