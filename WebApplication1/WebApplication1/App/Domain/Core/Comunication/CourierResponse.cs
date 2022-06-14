@@ -6,9 +6,11 @@ public class CourierResponse: BaseResponse<Courier>
 {
     public CourierResponse(Courier resource) : base(resource)
     {
+        
     }
 
     public CourierResponse(string message) : base(message)
     {
+        
     }
 }
