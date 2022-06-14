@@ -1,6 +1,10 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class UserController
+namespace DefaultNamespace;
+
+public class UserController:ControllerBase
 {
-    
+    public UserController()
+    {
+    }
 }

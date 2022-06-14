@@ -1,6 +1,10 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class ServiceController
+namespace DefaultNamespace;
+
+public class ServiceController:ControllerBase
 {
-    
+    public ServiceController()
+    {
+    }
 }

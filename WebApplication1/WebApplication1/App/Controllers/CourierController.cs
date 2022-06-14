@@ -1,6 +1,10 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class CourierController
+namespace DefaultNamespace;
+
+public class CourierController: ControllerBase
 {
-    
+    public CourierController()
+    {
+    }
 }

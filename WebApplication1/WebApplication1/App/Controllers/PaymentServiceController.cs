@@ -1,6 +1,10 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class PaymentServiceController
+namespace DefaultNamespace;
+
+public class PaymentServiceController:ControllerBase
 {
-    
+    public PaymentServiceController()
+    {
+    }
 }

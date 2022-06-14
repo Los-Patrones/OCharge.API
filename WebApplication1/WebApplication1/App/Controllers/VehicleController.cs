@@ -1,6 +1,12 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class VehicleController
+namespace DefaultNamespace;
+
+
+
+public class VehicleController : ControllerBase
 {
-    
+    public VehicleController()
+    {
+    }
 }

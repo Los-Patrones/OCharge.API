@@ -1,6 +1,10 @@
-﻿namespace DefaultNamespace;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class LicenseCategoryController
+namespace DefaultNamespace;
+
+public class LicenseCategoryController:ControllerBase
 {
-    
+    public LicenseCategoryController()
+    {
+    }
 }
