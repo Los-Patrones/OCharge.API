@@ -2,7 +2,7 @@ using WebApplication1.App.Domain;
 
 namespace WebApplication1.App.Domain.Repository;
 
-public interface UserRequestRepository
+public interface IUserRequestRepository
 {
     Task<IEnumerable<UserRequest>> ListAsync();
     Task AddAsync(UserRequest userRequest);

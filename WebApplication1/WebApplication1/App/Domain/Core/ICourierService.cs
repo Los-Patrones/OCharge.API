@@ -7,7 +7,7 @@ public interface ICourierService
 {
     Task<IEnumerable<Courier>> ListAsync();
     Task<IEnumerable<Courier>> ListByCategoryIdAsync(int courierId);
-    Task<CourierRepository> SaveAsync(Courier courier);
-    Task<CourierRepository> UpdateAsync(int id, Courier courier);
-    Task<CourierRepository> DeleteAsync(int id);
+    Task<ICourierRepository> SaveAsync(Courier courier);
+    Task<ICourierRepository> UpdateAsync(int id, Courier courier);
+    Task<ICourierRepository> DeleteAsync(int id);
 }

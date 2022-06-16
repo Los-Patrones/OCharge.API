@@ -99,7 +99,7 @@ public class AppDbContext:DbContext
             //User with Plan
             builder.Entity<Courier>()
                 .HasMany(p => p.LicenseCategories)
-                .WithMany(p => p.)
+                .WithMany(p => p.Buyer)
                 .HasForeignKey(p => p.PlanId);
         
             //Buyer with User

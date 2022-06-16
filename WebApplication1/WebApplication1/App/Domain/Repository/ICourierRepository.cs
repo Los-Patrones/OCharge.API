@@ -2,7 +2,7 @@ using WebApplication1.App.Domain;
 
 namespace WebApplication1.App.Domain.Repository;
 
-public interface CourierRepository
+public interface ICourierRepository
 {
     Task<IEnumerable<Courier>> ListAsync();
     Task AddAsync(Courier courier);

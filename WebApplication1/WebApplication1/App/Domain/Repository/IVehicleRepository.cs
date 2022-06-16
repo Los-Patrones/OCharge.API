@@ -2,7 +2,7 @@ using WebApplication1.App.Domain;
 
 namespace WebApplication1.App.Domain.Repository;
 
-public interface VehicleRepository
+public interface IVehicleRepository
 {
     Task<IEnumerable<Vehicle>> ListAsync();
     Task AddAsync(Vehicle vehicle);

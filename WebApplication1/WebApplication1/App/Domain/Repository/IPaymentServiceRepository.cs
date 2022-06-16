@@ -2,7 +2,7 @@ using WebApplication1.App.Domain;
 
 namespace WebApplication1.App.Domain.Repository;
 
-public interface PaymentServiceRepository
+public interface IPaymentServiceRepository
 {
     Task<IEnumerable<PaymentService>> ListAsync();
     Task AddAsync(PaymentService paymentService);
