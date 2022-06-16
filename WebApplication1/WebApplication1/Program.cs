@@ -1,7 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.app.Domain.Core;
+using WebApplication1.App.Domain.Core;
+using WebApplication1.App.Domain.Core.Comunication;
 using WebApplication1.App.Domain.Repository;
 using WebApplication1.App.Mapping;
 using WebApplication1.App.Persistence.Repositories;
+using WebApplication1.App.Services;
 using WebApplication1.App.Shared.Persistence.Contexts;
 using WebApplication1.Shared.Domain.Repositories;
 
@@ -28,13 +32,29 @@ builder.Services.AddRouting(
 // Dependency Injection Configuration
 
 builder.Services.AddScoped<IBrandVehicleRepository, BrandVehicleRepository>();
+builder.Services.AddScoped<IBrandVehicleService, IBrandVehicleService>();
+
 builder.Services.AddScoped<ICourierRepository, CourierRepository>();
+builder.Services.AddScoped<ICourierService, CourierService>();
+
 builder.Services.AddScoped<IPaymentMethodRepository, PaymentMethodRepository>();
+builder.Services.AddScoped<IPaymentMethodService, PaymentMethodService>();
+
 builder.Services.AddScoped<IPaymentServiceRepository, PaymentServiceRepository>();
+builder.Services.AddScoped<IPaymentServiceService, PaymentServiceService>();
+
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IServiceService, ServiceService>();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddScoped<IUserRequestRepository, UserRequestRepository>();
+builder.Services.AddScoped<IUserRequestService, UserRequestService>();
+
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // AutoMapper Configuration
