@@ -32,7 +32,7 @@ builder.Services.AddRouting(
 // Dependency Injection Configuration
 
 builder.Services.AddScoped<IBrandVehicleRepository, BrandVehicleRepository>();
-builder.Services.AddScoped<IBrandVehicleService, IBrandVehicleService>();
+builder.Services.AddScoped<IBrandVehicleService, BrandVehicleService>();
 
 builder.Services.AddScoped<ICourierRepository, CourierRepository>();
 builder.Services.AddScoped<ICourierService, CourierService>();
