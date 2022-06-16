@@ -45,7 +45,7 @@ public class BrandVehiclesController:ControllerBase
 
         return Ok(brandVehicleResource);
     }
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveBrandVehicleResource resource)
     {
         if (!ModelState.IsValid)

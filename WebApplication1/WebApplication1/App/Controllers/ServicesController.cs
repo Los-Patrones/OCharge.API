@@ -47,7 +47,7 @@ public class ServiceController:ControllerBase
 
         return Ok(serviceResource);
     }
-    [HttpPost("{id}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveServiceResource resource)
     {
         if (!ModelState.IsValid)
