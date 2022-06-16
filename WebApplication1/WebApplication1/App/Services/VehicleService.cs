@@ -1,33 +1,84 @@
 using WebApplication1.App.Domain.Core;
 using WebApplication1.App.Domain.Core.Comunication;
 using WebApplication1.App.Domain.Models;
+using WebApplication1.App.Domain.Repository;
+using WebApplication1.Shared.Domain.Repositories;
 
 namespace WebApplication1.App.Services;
 
 public class VehicleService:IVehicleService
 {
-    public Task<IEnumerable<Vehicle>> ListAsync()
+    private readonly IVehicleRepository _vehicleRepository;
+
+    private readonly IUnitOfWork _unitOfWork;
+    public VehicleService(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
     {
-        throw new NotImplementedException();
+        _vehicleRepository = vehicleRepository;
+        _unitOfWork = unitOfWork;
+    }
+    
+    public async Task<IEnumerable<Vehicle>> ListAsync()
+    {
+        return await _vehicleRepository.ListAsync();
+    }
+    
+    public async Task<VehicleResponse> SaveAsync(Vehicle vehicle)
+    {
+        try
+        {
+            await _vehicleRepository.AddAsync(vehicle);
+            await _unitOfWork.CompleteAsync();
+
+            return new VehicleResponse(vehicle);
+        }
+        catch (Exception e)
+        {
+            return new VehicleResponse($"An error occurred while saving the Vehicle: {e.Message}");
+        }
     }
 
-    public Task<IEnumerable<Vehicle>> ListByCategoryIdAsync(int vehicle)
+    public async Task<VehicleResponse> UpdateAsync(int id, Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        var existingVehicle = await _vehicleRepository.FindByIdAsync(id);
+
+        if (existingVehicle == null)
+            return new VehicleResponse("Vehicle not found.");
+
+        existingVehicle.Plate = vehicle.Plate;
+        existingVehicle.Photo = vehicle.Photo;
+        existingVehicle.CirculationCard = vehicle.CirculationCard;
+
+        try
+        {
+            _vehicleRepository.Update(existingVehicle);
+            await _unitOfWork.CompleteAsync();
+            
+            return new VehicleResponse(existingVehicle);
+        }
+        catch (Exception e)
+        {
+            return new VehicleResponse($"An error occurred while updating the Vehicle: {e.Message}");
+        }
     }
 
-    public Task<VehicleResponse> SaveAsync(Vehicle vehicle)
+    public async Task<VehicleResponse> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
-    }
+        var existingVehicle = await _vehicleRepository.FindByIdAsync(id);
 
-    public Task<VehicleResponse> UpdateAsync(int id, Vehicle vehicle)
-    {
-        throw new NotImplementedException();
-    }
+        if (existingVehicle == null)
+            return new VehicleResponse("Vehicle not found.");
 
-    public Task<VehicleResponse> DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
+        try
+        {
+            _vehicleRepository.Remove(existingVehicle);
+            await _unitOfWork.CompleteAsync();
+
+            return new VehicleResponse(existingVehicle);
+        }
+        catch (Exception e)
+        {
+            // Do some logging stuff
+            return new VehicleResponse($"An error occurred while deleting the Vehicle: {e.Message}");
+        }
     }
 }

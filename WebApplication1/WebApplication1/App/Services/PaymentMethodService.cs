@@ -1,33 +1,82 @@
 using WebApplication1.App.Domain.Core;
 using WebApplication1.App.Domain.Core.Comunication;
 using WebApplication1.App.Domain.Models;
+using WebApplication1.App.Domain.Repository;
+using WebApplication1.Shared.Domain.Repositories;
 
 namespace WebApplication1.App.Services;
 
 public class PaymentMethodService:IPaymentMethodService
 {
-    public Task<IEnumerable<PaymentMethod>> ListAsync()
+    private readonly IPaymentMethodRepository _paymentMethodRepository;
+
+    private readonly IUnitOfWork _unitOfWork;
+    public PaymentMethodService(IPaymentMethodRepository paymentMethodRepository, IUnitOfWork unitOfWork)
     {
-        throw new NotImplementedException();
+        _paymentMethodRepository = paymentMethodRepository;
+        _unitOfWork = unitOfWork;
+    }
+    
+    public async Task<IEnumerable<PaymentMethod>> ListAsync()
+    {
+        return await _paymentMethodRepository.ListAsync();
     }
 
-    public Task<IEnumerable<PaymentMethod>> ListByCategoryIdAsync(int paymentMethodId)
+    public async Task<PaymentMethodResponse> SaveAsync(PaymentMethod paymentMethod)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _paymentMethodRepository.AddAsync(paymentMethod);
+            await _unitOfWork.CompleteAsync();
+
+            return new PaymentMethodResponse(paymentMethod);
+        }
+        catch (Exception e)
+        {
+            return new PaymentMethodResponse($"An error occurred while saving the PaymentMethod: {e.Message}");
+        }
     }
 
-    public Task<PaymentMethodResponse> SaveAsync(PaymentMethod paymentMethod)
+    public async Task<PaymentMethodResponse> UpdateAsync(int id, PaymentMethod paymentMethod)
     {
-        throw new NotImplementedException();
+        var existingPaymentMethod = await _paymentMethodRepository.FindByIdAsync(id);
+
+        if (existingPaymentMethod == null)
+            return new PaymentMethodResponse("PaymentMethod not found.");
+
+        existingPaymentMethod.Type = paymentMethod.Type;
+
+        try
+        {
+            _paymentMethodRepository.Update(existingPaymentMethod);
+            await _unitOfWork.CompleteAsync();
+            
+            return new PaymentMethodResponse(existingPaymentMethod);
+        }
+        catch (Exception e)
+        {
+            return new PaymentMethodResponse($"An error occurred while updating the PaymentMethod: {e.Message}");
+        }
     }
 
-    public Task<PaymentMethodResponse> UpdateAsync(int id, PaymentMethod paymentMethod)
+    public async Task<PaymentMethodResponse> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
-    }
+        var existingPaymentMethod = await _paymentMethodRepository.FindByIdAsync(id);
 
-    public Task<PaymentMethodResponse> DeleteAsync(int id)
-    {
-        throw new NotImplementedException();
+        if (existingPaymentMethod == null)
+            return new PaymentMethodResponse("PaymentMethod not found.");
+
+        try
+        {
+            _paymentMethodRepository.Remove(existingPaymentMethod);
+            await _unitOfWork.CompleteAsync();
+
+            return new PaymentMethodResponse(existingPaymentMethod);
+        }
+        catch (Exception e)
+        {
+            // Do some logging stuff
+            return new PaymentMethodResponse($"An error occurred while deleting the PaymentMethod: {e.Message}");
+        }
     }
 }

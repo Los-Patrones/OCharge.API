@@ -3,7 +3,7 @@ namespace WebApplication1.App.Domain.Models;
 public class Service
 {
     public int Id { get; set; }
-    public bool Finalized { get; set; }
+    public bool IsFinalized { get; set; }
     public PaymentService PaymentService { get; set; }
     public int PaymentServiceId { get; set; }
     public UserRequest UserRequest { get; set; }

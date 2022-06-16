@@ -13,7 +13,7 @@ public class AppDbContext:DbContext
         
         public DbSet<BrandVehicle>BrandVehicles { get; set; }
         public DbSet<Courier>Couriers { get; set; }
-        public DbSet<LicenseCategory>LicenseCategorys { get; set; }
+        public DbSet<License>LicenseCategorys { get; set; }
         public DbSet<PaymentMethod>PaymentMethods { get; set; }
         public DbSet<PaymentService>PaymentServices { get; set; }
         public DbSet<Service>Services { get; set; }
@@ -43,11 +43,11 @@ public class AppDbContext:DbContext
             builder.Entity<Courier>().Property(p=>p.Email).HasMaxLength(50);
             builder.Entity<Courier>().Property(p=>p.LicenseNumber);
             
-            //LicenseCategory
-            builder.Entity<LicenseCategory>().ToTable("LicenseCategories");
-            builder.Entity<LicenseCategory>().HasKey(p => p.Id);
-            builder.Entity<LicenseCategory>().Property(p=>p.Id).IsRequired();
-            builder.Entity<LicenseCategory>().Property(p=>p.Type);
+            //License
+            builder.Entity<License>().ToTable("Licenses");
+            builder.Entity<License>().HasKey(p => p.Id);
+            builder.Entity<License>().Property(p=>p.Id).IsRequired();
+            builder.Entity<License>().Property(p=>p.Category);
             
             //PaymentMethod
             builder.Entity<PaymentMethod>().ToTable("PaymentMethods");
@@ -66,7 +66,7 @@ public class AppDbContext:DbContext
             builder.Entity<Service>().ToTable("Services");
             builder.Entity<Service>().HasKey(p => p.Id);
             builder.Entity<Service>().Property(p=>p.Id).IsRequired();
-            builder.Entity<Service>().Property(p=>p.Finalized);
+            builder.Entity<Service>().Property(p=>p.IsFinalized);
             
             //User
             builder.Entity<User>().ToTable("Users");
@@ -98,59 +98,61 @@ public class AppDbContext:DbContext
         
             // --------------------------- Courier -------------------------------- //
         
-            //User with Plan
+            //Courier with License
             builder.Entity<Courier>()
-                .HasMany(p => p.LicenseCategories)
-                .WithMany(p => p.Buyer)
-                .HasForeignKey(p => p.PlanId);
+                .HasMany(p => p.Licenses)
+                .WithOne(p => p.Courier)
+                .HasForeignKey(p => p.CourierId);
+            
+            //Courier with Vehicle
+            builder.Entity<Courier>()
+                .HasMany(p => p.Vehicles)
+                .WithOne(p => p.Courier)
+                .HasForeignKey(p => p.CourierId);
+            
+            //Courier with Service
+            builder.Entity<Courier>()
+                .HasMany(p => p.Services)
+                .WithOne(p => p.Courier)
+                .HasForeignKey(p => p.CourierId);
         
-            //Buyer with User
-            builder.Entity<Buyer>()
+            // --------------------------- UserRequest -------------------------------- //
+        
+            //UserRequest with User
+            builder.Entity<UserRequest>()
                 .HasOne(p => p.User)
-                .WithOne(p => p.Buyer)
-                .HasForeignKey<Buyer>(p => p.UserId)
-                .IsRequired(false);
-        
-            //User with Comment
-            builder.Entity<User>()
-                .HasMany(p => p.Comments)
-                .WithOne(p => p.User)
-                .HasForeignKey(p => p.UserId);
-        
-            // --------------------------- DESIGNER -------------------------------- //
-        
-            //Designer with User
-            builder.Entity<Designer>()
-                .HasOne(p => p.User)
-                .WithOne(p => p.Designer)
-                .HasForeignKey<Designer>(p => p.UserId)
+                .WithMany(p => p.UserRequests)
+                .HasForeignKey(p => p.UserId)
                 .IsRequired(false);
       
-            //Design with Purchase
-            builder.Entity<Design>()
-                .HasMany(p => p.Purchases)
-                .WithOne(p => p.Design)
-                .HasForeignKey(p => p.DesignId);
-        
-            //Design with PostDesign
-            builder.Entity<Design>()
-                .HasMany(p => p.PostDesigns)
-                .WithOne(p => p.Design)
-                .HasForeignKey(p => p.DesignId)
-                .IsRequired(false);
-        
-            //Design with Designer
-            builder.Entity<Design>()
-                .HasOne(p => p.Designer)
-                .WithMany(p => p.Designs)
-                .HasForeignKey(p => p.DesignerId);
-        
-            //Design with DesignCollaborator
-            builder.Entity<Design>()
-                .HasMany(p => p.DesignCollaborators)
-                .WithOne(p => p.Design)
-                .HasForeignKey(p => p.DesignId)
-                .IsRequired(false);
+            //UserRequest with Service
+            builder.Entity<UserRequest>()
+                .HasMany(p => p.Services)
+                .WithOne(p => p.UserRequest)
+                .HasForeignKey(p => p.UserRequestId);
             
+            // --------------------------- Vehicle -------------------------------- //
+        
+            //Vehicle with BrandVehicle
+            builder.Entity<Vehicle>()
+                .HasOne(p => p.BrandVehicle)
+                .WithOne(p => p.Vehicle)
+                .HasForeignKey<Vehicle>(p => p.BrandVehicleId);
+            
+            // --------------------------- PaymentService -------------------------------- //
+        
+            //PaymentService with PaymentMethod
+            builder.Entity<PaymentService>()
+                .HasOne(p => p.PaymentMethod)
+                .WithMany(p => p.PaymentServices)
+                .HasForeignKey(p => p.PaymentMethodId)
+                .IsRequired(false);
+      
+            //PaymentService with Service
+            builder.Entity<PaymentService>()
+                .HasOne(p => p.Service)
+                .WithOne(p => p.PaymentService)
+                .HasForeignKey<Service>(p => p.PaymentServiceId);
+
         }
 }

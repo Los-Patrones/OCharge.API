@@ -5,34 +5,34 @@ using WebApplication1.App.Shared.Persistence.Contexts;
 
 namespace WebApplication1.App.Persistence.Repositories;
 
-public class PaymentMethodRepository:BaseRepository,IPaymentServiceRepository
+public class PaymentMethodRepository:BaseRepository,IPaymentMethodRepository
 {
     public PaymentMethodRepository(AppDbContext context) : base(context)
     {
     }
 
-    public async Task<IEnumerable<PaymentService>> ListAsync()
+    public async Task<IEnumerable<PaymentMethod>> ListAsync()
     {
-        return await _context.PaymentServices.ToListAsync();
-    }
- 
-    public async Task AddAsync(PaymentService paymentService)
-    {
-        await _context.PaymentServices.AddAsync(paymentService);
+        return await _context.PaymentMethods.ToListAsync();
     }
 
-    public async Task<PaymentService> FindByIdAsync(int id)
+    public async Task AddAsync(PaymentMethod paymentMethod)
     {
-        return await _context.PaymentServices.FindAsync(id);
+        await _context.PaymentMethods.AddAsync(paymentMethod);
     }
 
-    public void Update(PaymentService paymentService)
+    public async Task<PaymentMethod> FindByIdAsync(int id)
     {
-        _context.PaymentServices.Update(paymentService);
+        return await _context.PaymentMethods.FindAsync(id);
     }
 
-    public void Remove(PaymentService paymentService)
+    public void Update(PaymentMethod paymentMethod)
     {
-        _context.PaymentServices.Remove(paymentService);
+        _context.PaymentMethods.Update(paymentMethod);
+    }
+
+    public void Remove(PaymentMethod paymentMethod)
+    {
+        _context.PaymentMethods.Remove(paymentMethod);
     }
 }
