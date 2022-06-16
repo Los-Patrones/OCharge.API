@@ -1,4 +1,4 @@
-namespace WebApplication1.App.Domain;
+namespace WebApplication1.App.Domain.Models;
 
 public class Service
 {

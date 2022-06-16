@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication1.App.Domain;
 using WebApplication1.App.Resources;
 
-namespace DefaultNamespace;
+namespace WebApplication1.App.Controllers;
 
 public class UserController:ControllerBase
 {

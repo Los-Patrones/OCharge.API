@@ -1,5 +1,6 @@
 using WebApplication1.App.Domain;
 using WebApplication1.App.Domain.Core.Comunication;
+using WebApplication1.App.Domain.Models;
 
 namespace WebApplication1.app.Domain.Core;
 

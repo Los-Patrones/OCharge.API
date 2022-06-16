@@ -1,37 +1,37 @@
-﻿using WebApplication1.App.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplication1.App.Domain.Models;
 using WebApplication1.App.Domain.Repository;
-using WebApplication1.App.Persistence.Contexts;
+using WebApplication1.App.Shared.Persistence.Contexts;
 
-namespace DefaultNamespace;
-
+namespace WebApplication1.App.Persistence.Repositories;
 public class VehicleRepository:BaseRepository,IVehicleRepository
 {
     public VehicleRepository(AppDbContext context) : base(context)
     {
     }
 
-    public Task<IEnumerable<Vehicle>> ListAsync()
+    public async Task<IEnumerable<Vehicle>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Vehicles.ToListAsync();
     }
 
-    public Task AddAsync(Vehicle vehicle)
+    public async Task AddAsync(Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        await _context.Vehicles.AddAsync(vehicle);
     }
 
-    public Task<Vehicle> FindByIdAsync(int id)
+    public async Task<Vehicle> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Vehicles.FindAsync(id);
     }
 
     public void Update(Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        _context.Vehicles.Update(vehicle);
     }
 
     public void Remove(Vehicle vehicle)
     {
-        throw new NotImplementedException();
+        _context.Vehicles.Remove(vehicle);
     }
 }

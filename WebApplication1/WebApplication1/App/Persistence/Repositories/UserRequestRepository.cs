@@ -1,8 +1,9 @@
-﻿using WebApplication1.App.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplication1.App.Domain.Models;
 using WebApplication1.App.Domain.Repository;
-using WebApplication1.App.Persistence.Contexts;
+using WebApplication1.App.Shared.Persistence.Contexts;
 
-namespace DefaultNamespace;
+namespace WebApplication1.App.Persistence.Repositories;
 
 public class UserRequestRepository : BaseRepository,IUserRequestRepository
 {
@@ -10,28 +11,28 @@ public class UserRequestRepository : BaseRepository,IUserRequestRepository
     {
     }
 
-    public Task<IEnumerable<UserRequest>> ListAsync()
+    public async Task<IEnumerable<UserRequest>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await _context.UserRequests.ToListAsync();
     }
 
-    public Task AddAsync(UserRequest userRequest)
+    public async Task AddAsync(UserRequest userRequest)
     {
-        throw new NotImplementedException();
+        await _context.UserRequests.AddAsync(userRequest);
     }
 
-    public Task<UserRequest> FindByIdAsync(int id)
+    public async Task<UserRequest> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.UserRequests.FindAsync(id);
     }
 
     public void Update(UserRequest userRequest)
     {
-        throw new NotImplementedException();
+        _context.UserRequests.Update(userRequest);
     }
 
     public void Remove(UserRequest userRequest)
     {
-        throw new NotImplementedException();
+        _context.UserRequests.Remove(userRequest);
     }
 }

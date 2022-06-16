@@ -1,37 +1,37 @@
-﻿using WebApplication1.App.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApplication1.App.Domain.Models;
 using WebApplication1.App.Domain.Repository;
-using WebApplication1.App.Persistence.Contexts;
+using WebApplication1.App.Shared.Persistence.Contexts;
 
-namespace DefaultNamespace;
-
+namespace WebApplication1.App.Persistence.Repositories;
 public class CourierRepository:BaseRepository,ICourierRepository
 {
     public CourierRepository(AppDbContext context) : base(context)
     {
     }
 
-    public Task<IEnumerable<Courier>> ListAsync()
+    public async Task<IEnumerable<Courier>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Couriers.ToListAsync();
     }
 
-    public Task AddAsync(Courier courier)
+    public async Task AddAsync(Courier courier)
     {
-        throw new NotImplementedException();
+        await _context.Couriers.AddAsync(courier);
     }
 
-    public Task<Courier> FindByIdAsync(int id)
+    public async Task<Courier> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Couriers.FindAsync(id);
     }
 
     public void Update(Courier courier)
     {
-        throw new NotImplementedException();
+        _context.Couriers.Update(courier);
     }
 
     public void Remove(Courier courier)
     {
-        throw new NotImplementedException();
+        _context.Couriers.Remove(courier);
     }
 }

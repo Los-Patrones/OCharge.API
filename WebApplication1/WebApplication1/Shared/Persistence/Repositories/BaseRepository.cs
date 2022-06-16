@@ -1,6 +1,10 @@
-﻿using WebApplication1.App.Persistence.Contexts;
+﻿
 
-namespace DefaultNamespace;
+
+
+using WebApplication1.App.Shared.Persistence.Contexts;
+
+namespace WebApplication1.App.Persistence.Repositories;
 
 public class BaseRepository
 {

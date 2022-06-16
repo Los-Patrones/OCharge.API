@@ -1,23 +1,25 @@
-using Microsoft.EntityFrameworkCore;
-using WebApplication1.App.Domain;
 
-namespace WebApplication1.App.Persistence.Contexts;
+
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.App.Domain.Models;
+
+namespace WebApplication1.App.Shared.Persistence.Contexts;
 
 public class AppDbContext:DbContext
 {
-     public AppDbContext(DbContextOptions options) : base(options)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
         }
         
-        public DbSet<BrandVehicle>Buyers { get; set; }
-        public DbSet<Courier>Collaborators { get; set; }
-        public DbSet<LicenseCategory>Comments { get; set; }
-        public DbSet<PaymentMethod>Designs { get; set; }
-        public DbSet<PaymentService>DesignCollaborators { get; set; }
-        public DbSet<Service>Designers { get; set; }
-        public DbSet<User>Plans { get; set; }
-        public DbSet<UserRequest>Posts { get; set; }
-        public DbSet<Vehicle>PostDesigns { get; set; }
+        public DbSet<BrandVehicle>BrandVehicles { get; set; }
+        public DbSet<Courier>Couriers { get; set; }
+        public DbSet<LicenseCategory>LicenseCategorys { get; set; }
+        public DbSet<PaymentMethod>PaymentMethods { get; set; }
+        public DbSet<PaymentService>PaymentServices { get; set; }
+        public DbSet<Service>Services { get; set; }
+        public DbSet<User>Users { get; set; }
+        public DbSet<UserRequest>UserRequests { get; set; }
+        public DbSet<Vehicle>Vehicles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

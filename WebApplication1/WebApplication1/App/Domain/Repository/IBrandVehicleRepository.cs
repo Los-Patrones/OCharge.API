@@ -1,10 +1,12 @@
-﻿using WebApplication1.App.Domain;
+﻿
 
-namespace DefaultNamespace;
+using WebApplication1.App.Domain.Models;
+
+namespace WebApplication1.App.Domain.Repository;
 
 public interface IBrandVehicleRepository
 {
-    Task<IEnumerable<BrandVehicle>> ListAsnc();
+    Task<IEnumerable<BrandVehicle>> ListAsync();
     Task AddAsync(BrandVehicle brandVehicle);
     Task<BrandVehicle> FindByIdAsync(int id);
     void Update(BrandVehicle brandVehicle);

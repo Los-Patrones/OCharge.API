@@ -1,5 +1,4 @@
-namespace WebApplication1.App.Domain;
-
+namespace WebApplication1.App.Domain.Models;
 public class User
 {
     public int Id { get; set; }

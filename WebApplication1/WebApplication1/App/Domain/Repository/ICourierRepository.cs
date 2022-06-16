@@ -1,4 +1,4 @@
-using WebApplication1.App.Domain;
+using WebApplication1.App.Domain.Models;
 
 namespace WebApplication1.App.Domain.Repository;
 
