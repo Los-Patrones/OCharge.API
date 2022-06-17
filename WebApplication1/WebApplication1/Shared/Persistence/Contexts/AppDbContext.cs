@@ -11,6 +11,7 @@ public class AppDbContext:DbContext
         {
         }
         
+        public DbSet<Person>Persons { get; set; }
         public DbSet<BrandVehicle>BrandVehicles { get; set; }
         public DbSet<Courier>Couriers { get; set; }
         public DbSet<License>LicenseCategorys { get; set; }
@@ -25,7 +26,13 @@ public class AppDbContext:DbContext
         {
             base.OnModelCreating(builder);
             /*-----------------------Properties and keys-----------------------*/
-        
+                
+            //Person
+            builder.Entity<Person>().ToTable("Persons");
+            builder.Entity<Person>().HasKey(p => p.Id);
+            builder.Entity<Person>().Property(p=>p.Id).IsRequired();
+            builder.Entity<Person>().Property(p => p.Phone).HasMaxLength(50);
+            
             //BrandVehicle
             builder.Entity<BrandVehicle>().ToTable("BrandVehicles");
             builder.Entity<BrandVehicle>().HasKey(p => p.Id);
@@ -34,8 +41,8 @@ public class AppDbContext:DbContext
             
             //Courier
             builder.Entity<Courier>().ToTable("Couriers");
-            builder.Entity<Courier>().HasKey(p => p.Id);
-            builder.Entity<Courier>().Property(p=>p.Id).IsRequired();
+            builder.Entity<Courier>().HasKey(p => p.PersonId);
+            builder.Entity<Courier>().Property(p=>p.PersonId).IsRequired();
             builder.Entity<Courier>().Property(p=>p.DNI).HasMaxLength(50);
             builder.Entity<Courier>().Property(p=>p.Name).HasMaxLength(50);
             builder.Entity<Courier>().Property(p=>p.LastName).HasMaxLength(50);
@@ -70,10 +77,9 @@ public class AppDbContext:DbContext
             
             //User
             builder.Entity<User>().ToTable("Users");
-            builder.Entity<User>().HasKey(p => p.Id);
-            builder.Entity<User>().Property(p=>p.Id).IsRequired();
-            builder.Entity<User>().Property(p=>p.Phone).HasMaxLength(50);
-            
+            builder.Entity<User>().HasKey(p => p.PersonId);
+            builder.Entity<User>().Property(p=>p.PersonId).IsRequired();
+
             //UserRequest
             builder.Entity<UserRequest>().ToTable("UserRequests");
             builder.Entity<UserRequest>().HasKey(p => p.UserId);
@@ -95,7 +101,22 @@ public class AppDbContext:DbContext
             builder.Entity<Vehicle>().Property(p=>p.CirculationCard).HasMaxLength(50);
             
             /*----------------------- Relationships and Foreignkeys -----------------------*/
+            
+            // --------------------------- Person -------------------------------- //
         
+            //Person with User
+            builder.Entity<Person>()
+                .HasOne(p => p.User)
+                .WithOne(p => p.Person)
+                .HasForeignKey<User>(p => p.PersonId);
+            
+            //Person with Courier
+            builder.Entity<Person>()
+                .HasOne(p => p.Courier)
+                .WithOne(p => p.Person)
+                .HasForeignKey<Courier>(p => p.PersonId);
+            
+            
             // --------------------------- Courier -------------------------------- //
         
             //Courier with License

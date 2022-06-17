@@ -35,29 +35,7 @@ public class UserService:IUserService
             return new UserResponse($"An error occurred while saving the User: {e.Message}");
         }
     }
-
-    public async Task<UserResponse> UpdateAsync(int id, User user)
-    {
-        var existingUser = await _userRepository.FindByIdAsync(id);
-
-        if (existingUser == null)
-            return new UserResponse("User not found.");
-
-        existingUser.Phone = user.Phone;
-
-        try
-        {
-            _userRepository.Update(existingUser);
-            await _unitOfWork.CompleteAsync();
-            
-            return new UserResponse(existingUser);
-        }
-        catch (Exception e)
-        {
-            return new UserResponse($"An error occurred while updating the User: {e.Message}");
-        }
-    }
-
+    
     public async Task<UserResponse> DeleteAsync(int id)
     {
         var existingUser = await _userRepository.FindByIdAsync(id);

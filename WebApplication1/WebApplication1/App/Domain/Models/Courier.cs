@@ -2,7 +2,8 @@ namespace WebApplication1.App.Domain.Models;
 
 public class Courier
 {
-    public int Id { get; set; }
+    public Person Person { get; set; }
+    public int PersonId { get; set; }
     public int DNI { get; set; }
     public string Name { get; set; }
     public string LastName { get; set; }
