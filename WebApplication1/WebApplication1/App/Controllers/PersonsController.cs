@@ -29,12 +29,12 @@ public class PersonsController:ControllerBase
         return resources;
     }
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody, SwaggerRequestBody("Person Information to Add", Required = true)] PersonResource resource)
+    public async Task<IActionResult> PostAsync([FromBody, SwaggerRequestBody("Person Information to Add", Required = true)] SavePersonResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var person = _mapper.Map<PersonResource, Person>(resource);
+        var person = _mapper.Map<SavePersonResource, Person>(resource);
 
         var result = await _PersonService.SaveAsync(person);
 

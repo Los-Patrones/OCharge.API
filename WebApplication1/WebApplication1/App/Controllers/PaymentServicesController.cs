@@ -31,12 +31,12 @@ public class PaymentServiceController:ControllerBase
         return resources;
     }
     [HttpPost]
-    public async Task<IActionResult> PostAsync([FromBody, SwaggerRequestBody("PaymentService Information to Add", Required = true)] PaymentServiceResource resource)
+    public async Task<IActionResult> PostAsync([FromBody, SwaggerRequestBody("PaymentService Information to Add", Required = true)] SavePaymentServiceResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var paymentService = _mapper.Map<PaymentServiceResource, PaymentService>(resource);
+        var paymentService = _mapper.Map<SavePaymentServiceResource, PaymentService>(resource);
 
         var result = await _paymentServiceService.SaveAsync(paymentService);
 
