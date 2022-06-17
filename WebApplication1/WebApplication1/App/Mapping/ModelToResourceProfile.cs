@@ -10,8 +10,11 @@ public class ModelToResourceProfile:Profile
     {
         CreateMap<BrandVehicle, BrandVehicleResource>();
         CreateMap<Courier, CourierResource>();
+        CreateMap<PaymentMethod, PaymentMethodResource>();
         CreateMap<PaymentService, PaymentServiceResource>();
+        CreateMap<Person, PersonResource>();
         CreateMap<Service, ServiceResource>();
+        CreateMap<User, UserResource>();
         CreateMap<UserRequest, UserRequestResource>();
         CreateMap<Vehicle, VehicleResource>();
     }
