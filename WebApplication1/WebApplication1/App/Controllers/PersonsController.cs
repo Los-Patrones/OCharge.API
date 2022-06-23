@@ -46,12 +46,12 @@ public class PersonsController:ControllerBase
         return Ok(personResource);
     }
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAsync(int id, [FromBody] SavePaymentMethodResource resource)
+    public async Task<IActionResult> PutAsync(int id, [FromBody] SavePersonResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var person = _mapper.Map<SavePaymentMethodResource, Person>(resource);
+        var person = _mapper.Map<SavePersonResource, Person>(resource);
 
         var result = await _PersonService.UpdateAsync(id, person);
 

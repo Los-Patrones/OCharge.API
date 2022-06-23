@@ -43,7 +43,7 @@ public class ServiceController:ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var serviceResource = _mapper.Map<Service, SaveServiceResource>(result.Resource);
+        var serviceResource = _mapper.Map<Service, ServiceResource>(result.Resource);
 
         return Ok(serviceResource);
     }
@@ -60,7 +60,7 @@ public class ServiceController:ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var serviceResource = _mapper.Map<Service, SaveServiceResource>(result.Resource);
+        var serviceResource = _mapper.Map<Service, ServiceResource>(result.Resource);
 
         return Ok(serviceResource);
     }
@@ -72,7 +72,7 @@ public class ServiceController:ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var serviceResource = _mapper.Map<Service, SaveServiceResource>(result.Resource);
+        var serviceResource = _mapper.Map<Service, ServiceResource>(result.Resource);
 
         return Ok(serviceResource);
     }

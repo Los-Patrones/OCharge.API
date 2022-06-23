@@ -60,7 +60,7 @@ public class UserRequestController:ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var userRequestResource = _mapper.Map<UserRequest, SaveUserRequestResource>(result.Resource);
+        var userRequestResource = _mapper.Map<UserRequest, UserRequestResource>(result.Resource);
 
         return Ok(userRequestResource);
     }
@@ -72,7 +72,7 @@ public class UserRequestController:ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var userRequestResource = _mapper.Map<UserRequest, SaveUserRequestResource>(result.Resource);
+        var userRequestResource = _mapper.Map<UserRequest, UserRequestResource>(result.Resource);
 
         return Ok(userRequestResource);
     }
