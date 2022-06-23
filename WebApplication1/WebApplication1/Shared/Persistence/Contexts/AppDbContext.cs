@@ -82,8 +82,8 @@ public class AppDbContext:DbContext
 
             //UserRequest
             builder.Entity<UserRequest>().ToTable("UserRequests");
-            builder.Entity<UserRequest>().HasKey(p => p.UserId);
-            builder.Entity<UserRequest>().Property(p=>p.UserId).IsRequired();
+            builder.Entity<UserRequest>().HasKey(p => p.Id);
+            builder.Entity<UserRequest>().Property(p=>p.Id).IsRequired();
             builder.Entity<UserRequest>().Property(p=>p.AddressStart).HasMaxLength(500);
             builder.Entity<UserRequest>().Property(p=>p.AddressEnd).HasMaxLength(500);
             builder.Entity<UserRequest>().Property(p=>p.ReferenceAddress).HasMaxLength(500);
@@ -123,19 +123,19 @@ public class AppDbContext:DbContext
             builder.Entity<Courier>()
                 .HasMany(p => p.Licenses)
                 .WithOne(p => p.Courier)
-                .HasForeignKey(p => p.CourierId);
+                .HasForeignKey(p => p.Courier_PersonId);
             
             //Courier with Vehicle
             builder.Entity<Courier>()
                 .HasMany(p => p.Vehicles)
                 .WithOne(p => p.Courier)
-                .HasForeignKey(p => p.CourierId);
+                .HasForeignKey(p => p.Courier_PersonId);
             
             //Courier with Service
             builder.Entity<Courier>()
                 .HasMany(p => p.Services)
                 .WithOne(p => p.Courier)
-                .HasForeignKey(p => p.CourierId);
+                .HasForeignKey(p => p.Courier_PersonId);
         
             // --------------------------- UserRequest -------------------------------- //
         
@@ -143,7 +143,7 @@ public class AppDbContext:DbContext
             builder.Entity<UserRequest>()
                 .HasOne(p => p.User)
                 .WithMany(p => p.UserRequests)
-                .HasForeignKey(p => p.UserId)
+                .HasForeignKey(p => p.User_PersonId)
                 .IsRequired(false);
       
             //UserRequest with Service

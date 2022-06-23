@@ -9,5 +9,5 @@ public class Vehicle
     public BrandVehicle BrandVehicle { get; set; }
     public int BrandVehicleId { get; set; }
     public Courier Courier { get; set; }
-    public int CourierId { get; set; }
+    public int Courier_PersonId { get; set; }
 }

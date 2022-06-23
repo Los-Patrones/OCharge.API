@@ -8,5 +8,4 @@ public class PaymentService
     public PaymentMethod PaymentMethod { get; set; }
     public int PaymentMethodId { get; set; }
     public Service Service { get; set; }
-    public int ServiceId { get; set; }
 }

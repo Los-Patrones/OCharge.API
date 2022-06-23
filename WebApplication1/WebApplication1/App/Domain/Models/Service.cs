@@ -9,5 +9,5 @@ public class Service
     public UserRequest UserRequest { get; set; }
     public int UserRequestId { get; set; }
     public Courier Courier { get; set; }
-    public int CourierId { get; set; }
+    public int Courier_PersonId { get; set; }
 }

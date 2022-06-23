@@ -1,9 +1,7 @@
 namespace WebApplication1.App.Domain.Models;
 public class UserRequest
 {
-    //PK
-    public User User { get; set; }
-    public int UserId { get; set; }
+    public int Id { get; set; }
     //Attributes
     public int AddressStart { get; set; }
     public int AddressEnd { get; set; }
@@ -13,6 +11,8 @@ public class UserRequest
     public string Date { get; set; }
     public string Hour { get; set; }
     //RelationShip
+    public User User { get; set; }
+    public int User_PersonId { get; set; }
     public List<Service> Services { get; set; } = new List<Service>();
     
 }
