@@ -11,9 +11,9 @@ public class PersonService:IPersonService
     private readonly IPersonRepository _personRepository;
 
     private readonly IUnitOfWork _unitOfWork;
-    public PersonService(IPersonRepository PersonRepository, IUnitOfWork unitOfWork)
+    public PersonService(IPersonRepository personRepository, IUnitOfWork unitOfWork)
     {
-        _personRepository = PersonRepository;
+        _personRepository = personRepository;
         _unitOfWork = unitOfWork;
     }
     

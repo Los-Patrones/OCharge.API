@@ -28,7 +28,7 @@ public class PersonRepository:BaseRepository,IPersonRepository
 
     public void Update(Person person)
     {
-        throw new NotImplementedException();
+        _context.Persons.Update(person);
     }
 
     public void Remove(Person person)

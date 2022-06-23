@@ -11,19 +11,19 @@ namespace WebApplication1.App.Controllers;
 [Route("/api/v1/[controller]")]
 public class PersonsController:ControllerBase
 {
-    private readonly IPersonService _PersonService;
+    private readonly IPersonService _personService;
     private readonly IMapper _mapper;
 
 
-    public PersonsController(IPersonService PersonService, IMapper mapper)
+    public PersonsController(IPersonService personService, IMapper mapper)
     {
-        _PersonService = PersonService;
+        _personService = personService;
         _mapper = mapper;
     }
     [HttpGet]
     public async Task<IEnumerable<PersonResource>> GetAllAsync()
     {
-        var person = await _PersonService.ListAsync();
+        var person = await _personService.ListAsync();
         var resources = _mapper.Map<IEnumerable<Person>, IEnumerable<PersonResource>>(person);
 
         return resources;
@@ -36,7 +36,7 @@ public class PersonsController:ControllerBase
 
         var person = _mapper.Map<SavePersonResource, Person>(resource);
 
-        var result = await _PersonService.SaveAsync(person);
+        var result = await _personService.SaveAsync(person);
 
         if (!result.Success)
             return BadRequest(result.Message);
@@ -53,7 +53,7 @@ public class PersonsController:ControllerBase
 
         var person = _mapper.Map<SavePersonResource, Person>(resource);
 
-        var result = await _PersonService.UpdateAsync(id, person);
+        var result = await _personService.UpdateAsync(id, person);
 
         if (!result.Success)
             return BadRequest(result.Message);
@@ -65,7 +65,7 @@ public class PersonsController:ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
-        var result = await _PersonService.DeleteAsync(id);
+        var result = await _personService.DeleteAsync(id);
 
         if (!result.Success)
             return BadRequest(result.Message);
