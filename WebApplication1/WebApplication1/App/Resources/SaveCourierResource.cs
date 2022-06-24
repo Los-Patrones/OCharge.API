@@ -2,6 +2,7 @@ namespace WebApplication1.App.Resources;
 
 public class SaveCourierResource
 {
+    public int PersonId { get; set; }
     public int DNI { get; set; }
     public string Name { get; set; }
     public string LastName { get; set; }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using WebApplication1.App.Domain.Core;
 using WebApplication1.App.Domain.Models;
+using WebApplication1.App.Domain.Repository;
 using WebApplication1.App.Resources;
 using WebApplication1.App.Shared.Extensions;
 
@@ -13,7 +15,7 @@ public class CouriersController: ControllerBase
     private readonly ICourierService _courierService;
     private readonly IMapper _mapper;
 
-
+    private readonly IPersonRepository _personRepository;
     public CouriersController(ICourierService courierService, IMapper mapper)
     {
         _courierService = courierService;
@@ -31,13 +33,19 @@ public class CouriersController: ControllerBase
 
     
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post a Courier for given Category",
+        Description = "Process to create courier:Select an existing Id in Persons. Late, in Courier put the Id in personId. ",
+        OperationId = "PostCourier",
+        Tags = new[] { "Couriers"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveCourierResource resource)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
-
+        
         var courier = _mapper.Map<SaveCourierResource, Courier>(resource);
-
+        
         var result = await _courierService.SaveAsync(courier);
 
         if (!result.Success)

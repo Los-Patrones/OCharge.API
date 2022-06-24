@@ -17,7 +17,8 @@ public class CourierRepository:BaseRepository,ICourierRepository
 
     public async Task AddAsync(Courier courier)
     {
-        await _context.Couriers.AddAsync(courier);
+       // courier.Person = _personRepository.FindByIdAsync();
+       await _context.Couriers.AddAsync(courier);
     }
 
     public async Task<Courier> FindByIdAsync(int id)

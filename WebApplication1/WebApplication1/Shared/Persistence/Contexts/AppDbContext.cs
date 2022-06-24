@@ -108,13 +108,13 @@ public class AppDbContext:DbContext
             builder.Entity<Person>()
                 .HasOne(p => p.User)
                 .WithOne(p => p.Person)
-                .HasForeignKey<User>(p => p.PersonId);
+                .HasForeignKey<User>(p => p.PersonId).IsRequired();
             
             //Person with Courier
             builder.Entity<Person>()
                 .HasOne(p => p.Courier)
                 .WithOne(p => p.Person)
-                .HasForeignKey<Courier>(p => p.PersonId);
+                .HasForeignKey<Courier>(p => p.PersonId).IsRequired();
             
             
             // --------------------------- Courier -------------------------------- //
