@@ -6,5 +6,4 @@ public class PaymentServiceResource
     public int CardUser { get; set; }
     public int CardCourier { get; set; }
     public int PaymentMethodId { get; set; }
-    public int ServiceId { get; set; }
 }

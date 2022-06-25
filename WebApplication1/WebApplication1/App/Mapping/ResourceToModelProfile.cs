@@ -18,5 +18,6 @@ public class ResourceToModelProfile:Profile
         CreateMap<SaveUserResource, User>();
         CreateMap<SaveUserRequestResource, UserRequest>();
         CreateMap<SaveVehicleResource, Vehicle>();
+        CreateMap<SaveLicenseResource, License>();
     }
 }

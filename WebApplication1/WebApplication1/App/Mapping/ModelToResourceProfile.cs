@@ -17,5 +17,6 @@ public class ModelToResourceProfile:Profile
         CreateMap<User, UserResource>();
         CreateMap<UserRequest, UserRequestResource>();
         CreateMap<Vehicle, VehicleResource>();
+        CreateMap<License, LicenseResource>();
     }
 }

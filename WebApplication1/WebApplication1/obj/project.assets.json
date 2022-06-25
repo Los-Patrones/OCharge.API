@@ -2063,11 +2063,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Desktop\\2022-1\\Diseño y Patrones de Software\\OCharge\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "E:\\Desktop\\New folder (4)\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "E:\\Desktop\\2022-1\\Diseño y Patrones de Software\\OCharge\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectPath": "E:\\Desktop\\New folder (4)\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "E:\\Desktop\\2022-1\\Diseño y Patrones de Software\\OCharge\\OCharge.API\\WebApplication1\\WebApplication1\\obj\\",
+      "outputPath": "E:\\Desktop\\New folder (4)\\OCharge.API\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

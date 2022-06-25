@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
+﻿
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using WebApplication1.App.Domain;
 using WebApplication1.App.Domain.Core;
 using WebApplication1.App.Domain.Core.Comunication;
+using WebApplication1.App.Domain.Models;
 using WebApplication1.App.Resources;
 using WebApplication1.App.Shared.Extensions;
 

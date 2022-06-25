@@ -14,7 +14,7 @@ public class AppDbContext:DbContext
         public DbSet<Person>Persons { get; set; }
         public DbSet<BrandVehicle>BrandVehicles { get; set; }
         public DbSet<Courier>Couriers { get; set; }
-        public DbSet<License>LicenseCategorys { get; set; }
+        public DbSet<License>Licenses { get; set; }
         public DbSet<PaymentMethod>PaymentMethods { get; set; }
         public DbSet<PaymentService>PaymentServices { get; set; }
         public DbSet<Service>Services { get; set; }

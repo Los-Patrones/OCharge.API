@@ -58,6 +58,9 @@ builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IPersonRepository, PersonRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 
+builder.Services.AddScoped<ILicenseRepository, LicenseRepository>();
+builder.Services.AddScoped<ILicenseService, LicenseService>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // AutoMapper Configuration

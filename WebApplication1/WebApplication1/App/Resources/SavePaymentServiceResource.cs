@@ -4,4 +4,5 @@ public class SavePaymentServiceResource
 {
     public int CardUser { get; set; }
     public int CardCourier { get; set; }
+    public int PaymentMethodId { get; set; }
 }
