@@ -9,4 +9,5 @@ public class SaveUserRequestResource
     public string Description { get; set; }
     public string Date { get; set; }
     public string Hour { get; set; }
+    public int User_PersonId { get; set; }
 }
