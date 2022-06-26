@@ -2,7 +2,7 @@ namespace WebApplication1.App.Resources;
 
 public class SavePaymentServiceResource
 {
-    public int CardUser { get; set; }
-    public int CardCourier { get; set; }
+    public string CardUser { get; set; }
+    public string CardCourier { get; set; }
     public int PaymentMethodId { get; set; }
 }

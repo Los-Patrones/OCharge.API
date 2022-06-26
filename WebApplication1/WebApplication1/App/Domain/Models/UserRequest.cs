@@ -3,8 +3,8 @@ public class UserRequest
 {
     public int Id { get; set; }
     //Attributes
-    public int AddressStart { get; set; }
-    public int AddressEnd { get; set; }
+    public string AddressStart { get; set; }
+    public string AddressEnd { get; set; }
     public string ReferenceAddress { get; set; }
     public string Photo { get; set; }
     public string Description { get; set; }

@@ -54,6 +54,7 @@ public class AppDbContext:DbContext
             builder.Entity<License>().ToTable("Licenses");
             builder.Entity<License>().HasKey(p => p.Id);
             builder.Entity<License>().Property(p=>p.Id).IsRequired();
+            builder.Entity<License>().Property(p=>p.Class);
             builder.Entity<License>().Property(p=>p.Category);
             
             //PaymentMethod

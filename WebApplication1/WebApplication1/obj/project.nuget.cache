@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9DdZpcBOrVVUEKhbITqjthk2TNjQ5EU/yCwZDeeV1QNNCWZ0LdorftQB8DyeUJInCm5VYSIwfLJPk/hwrH2ItA==",
+  "dgSpecHash": "xwSQJQBhVPUoNZqQH0cbnihxuokcaBBn707L3D3YhIBPwqqVRWPsz8a95djCC2k+X8hXDs8aa6vGJiTkiswieg==",
   "success": true,
-  "projectFilePath": "E:\\Desktop\\New folder (4)\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "E:\\Desktop\\OCHARGETRABAJO\\OCharge.API\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

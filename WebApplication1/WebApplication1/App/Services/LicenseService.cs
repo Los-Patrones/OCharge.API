@@ -42,6 +42,7 @@ public class LicenseService:ILicenseService
         if (existingLicense == null)
             return new LicenseResponse("License not found");
 
+        existingLicense.Class = license.Class;
         existingLicense.Category = license.Category;
         existingLicense.Courier_PersonId = license.Courier_PersonId;
 

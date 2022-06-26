@@ -1,0 +1,54 @@
+USE OCharge
+INSERT INTO PaymentMethods ([Type]) VALUES ('DebitCard')
+INSERT INTO PaymentMethods ([Type]) VALUES ('CreditCard')
+INSERT INTO PaymentMethods ([Type]) VALUES ('Yape')
+
+INSERT INTO Persons (Phone) VALUES ('+51976543231')
+INSERT INTO Persons (Phone) VALUES ('+51976354333')
+INSERT INTO Persons (Phone) VALUES ('+51931910783')
+INSERT INTO Persons (Phone) VALUES ('+51947954543')
+INSERT INTO Persons (Phone) VALUES ('+51928321111')
+
+INSERT INTO Users (PersonId) VALUES (1)
+INSERT INTO Users (PersonId) VALUES (3)
+INSERT INTO Users (PersonId) VALUES (5)
+
+INSERT INTO Couriers (PersonId,DNI,[Name],LastName,BirthDay,Email,LicenseNumber) VALUES (2,'22355327','Carlos','Oxenford','20/8/1980','carlos@hotmail.com','Q543731955')
+INSERT INTO Couriers (PersonId,DNI,[Name],LastName,BirthDay,Email,LicenseNumber) VALUES (4,'65432256','Juliana','Castillo','15/6/1970','juli@hotmail.com','Q342682322')
+
+INSERT INTO Licenses (Class,Category,Courier_PersonId) VALUES ('A','2',2)
+INSERT INTO Licenses (Class,Category,Courier_PersonId) VALUES ('A','2',4)
+INSERT INTO Licenses (Class,Category,Courier_PersonId) VALUES ('A','1',2)
+
+INSERT INTO BrandVehicles(Brand) VALUES ('Toyota')
+INSERT INTO BrandVehicles (Brand) VALUES ('Honda')
+
+INSERT INTO Vehicles (Plate,Photo,CirculationCard,BrandVehicleId,Courier_PersonId) VALUES ('A1A-123','www.url1.com','07-P23116224-01',1,2)
+INSERT INTO Vehicles (Plate,Photo,CirculationCard,BrandVehicleId,Courier_PersonId) VALUES ('AEF-717','www.url2.com','05-P35122216-01',2,4)
+
+INSERT INTO UserRequests(AddressStart,AddressEnd,ReferenceAddress,Photo,[Description],[Date],[Hour],User_PersonId)
+	VALUES('Urb. Robles Manzana Lote 20','Av. Miraflores 531','Cerca del parque Kennedy','www.urlPhoto1.com','Carga ligera ropa','6/1/2022','7:47:00 AM',1)
+INSERT INTO UserRequests(AddressStart,AddressEnd,ReferenceAddress,Photo,[Description],[Date],[Hour],User_PersonId)
+	VALUES('Urb. Amancaes Cuadra 10','Av. Joaquin Madre Nº 200 - SanBorja','A la altura de la Municipalidad','www.urlPhoto2.com','Carga de lotes de tela','12/5/2008','7:47:00 PM',3)
+
+INSERT INTO PaymentServices(CardUser,CardCourier,PaymentMethodId) VALUES('5321222345875552','5214521362847152',1)
+INSERT INTO PaymentServices(CardUser,CardCourier,PaymentMethodId) VALUES('4112114575411111','1425123641871645',2)
+
+INSERT INTO [Services](IsFinalized,PaymentServiceId,UserRequestId,Courier_PersonId) VALUES(1,1,1,2)
+INSERT INTO [Services](IsFinalized,PaymentServiceId,UserRequestId,Courier_PersonId) VALUES(0,2,1,2)
+
+
+USE OCharge
+SELECT*FROM BrandVehicles
+SELECT*FROM Couriers
+SELECT*FROM Licenses
+SELECT*FROM PaymentMethods
+SELECT*FROM PaymentServices
+SELECT*FROM Persons
+SELECT*FROM [Services]
+SELECT*FROM UserRequests
+SELECT*FROM Users
+SELECT*FROM Vehicles
+
+
+DROP DATABASE OCharge
